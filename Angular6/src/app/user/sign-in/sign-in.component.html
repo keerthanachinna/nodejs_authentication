@@ -1,0 +1,21 @@
+<div>
+    <img src="/3/Angular6/src/assets/img/single_user.png" id="icon" alt=""/>
+</div>
+<form #signFrom="ngFrom" (ngSubmit)="signInForm.valid && onSubmit(signInForm)">
+
+        <input type="text" name="email" #email="ngModel" [(ngModel)]="model.email" placeholder="Enter the email" [pattern]="emailRegx" required
+        [ngClass]="{'invalid-textbox':signInForm.submitted && !email.valid}">
+        <div *ngIf="signInForm.submitted && email.errors?.pattern">
+            <label class="validation-message">Invalid email address.</label>
+
+        </div>
+        <input type="text" name="password" #password="ngModel" [(ngModel)]="model.password" placeholder="Enter the password" [pattern]=""
+        [ngClass]="{'invalid-textbox:signInForm.submitted && !password.valid'}" minlength="4" required>
+        <div *ngIf="signInForm.submitted && password.errors?.minlength">
+
+        </div>
+ 
+</form>
+<div class="alt" *ngIf="serverErrorMessages">
+{{serverErrorMessages}}
+</div>
